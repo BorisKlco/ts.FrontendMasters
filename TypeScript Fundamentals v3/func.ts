@@ -23,3 +23,22 @@ const flipCoin: FlipType = (choice, stake) => {
 };
 
 console.log(flipCoin("tail", 50));
+
+// void != undefined
+// Function overload
+
+type FormSubmitHandler = (data: FormData) => void;
+type MsgHandler = (e: MessageEvent) => void;
+
+function handleEvent(element: HTMLFormElement, handler: FormSubmitHandler);
+function handleEvent(element: HTMLIFrameElement, handler: MsgHandler);
+function handleEvent(
+  element: HTMLIFrameElement | HTMLFormElement,
+  handler: MsgHandler | FormSubmitHandler
+) {}
+
+const frame = document.getElementsByTagName("iframe")[0];
+const form = document.getElementsByTagName("form")[0];
+
+handleEvent(frame, (val) => {});
+handleEvent(form, (val) => {});

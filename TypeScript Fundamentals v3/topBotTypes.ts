@@ -43,3 +43,45 @@ function getMeHimOnPhoneNow() {
 }
 
 console.log(getMeHimOnPhoneNow());
+
+// use of never
+
+class Car {
+  drive() {
+    console.log("vroom");
+  }
+}
+class Truck {
+  tow() {
+    console.log("dragging something");
+  }
+}
+class Boat {
+  isFloating() {
+    return true;
+  }
+}
+type Vehicle = Truck | Car | Boat;
+//type Vehicle = Truck | Car;
+
+function obtainRandomVehicle() {
+  const random = Math.random();
+  if (random < 0.33) {
+    return new Car();
+  } else if (random < 0.66) {
+    return new Boat();
+  }
+
+  return new Truck();
+}
+
+let myVehicle: Vehicle = obtainRandomVehicle();
+
+if (myVehicle instanceof Truck) {
+  myVehicle.tow();
+} else if (myVehicle instanceof Car) {
+  myVehicle.drive();
+} else {
+  // NEITHER!
+  const neverValue: never = myVehicle;
+}

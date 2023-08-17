@@ -83,5 +83,28 @@ if (myVehicle instanceof Truck) {
   myVehicle.drive();
 } else {
   // NEITHER!
-  const neverValue: never = myVehicle;
+  //const neverValue: never = myVehicle;
+}
+
+//assignment operator
+
+class ThingWithAsyncSetup {
+  setupPromise: Promise<any>;
+  isSetup!: boolean;
+  //isSetup is NOT define, is definition is condition
+  //by created Promise inside constructor()
+  // !: ignore this, it will be define
+
+  constructor() {
+    this.setupPromise = new Promise((resolve) => {
+      this.isSetup = false;
+      return this.doSetup(resolve);
+    }).then(() => {
+      this.isSetup = true;
+    });
+  }
+
+  private async doSetup(resolve: (value: unknown) => void) {
+    return null;
+  }
 }
